@@ -11,9 +11,11 @@ pdata<-subset(fullpdata, (Date>="2007-02-01"& Date<= "2007-02-02"))
 #removes full table
 rm(fullpdata)
 
-#generates png file
-png(file="plot1.png")
+datetime<-strptime(paste(pdata$Date, pdata$Time), format="%Y-%m-%d %H:%M:%S")
 
-with(pdata, hist(Global_active_power, col = "red", main = "Global Active Power",
-                 xlab = "Global Active Power (kilowatts)"),ylab="Frequency")
+#generates png file
+png(file="plot2.png")
+
+plot(datetime, pdata$Global_active_power, type="l", xlab = "", ylab = "Global Active Power (kilowatts)")
+
 dev.off()
